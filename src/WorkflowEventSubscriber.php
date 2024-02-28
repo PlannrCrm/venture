@@ -97,9 +97,9 @@ class WorkflowEventSubscriber
         JobProcessing|JobProcessed|JobFailed $event,
         Closure $callback,
     ): void {
-        $jobName = $event->job->payload()['data']['commandName'];
+        $jobName = $event->job->payload()['data']['commandName'] ?? null;
 
-        if (!isset(class_implements($jobName)[WorkflowableJob::class])) {
+        if (is_object($jobName) && !isset(class_implements($jobName)[WorkflowableJob::class])) {
             return;
         }
 
