@@ -27,7 +27,6 @@ use Sassnowski\Venture\Serializer\WorkflowJobSerializer;
 use Sassnowski\Venture\State\WorkflowState;
 use Sassnowski\Venture\Venture;
 use Sassnowski\Venture\WorkflowableJob;
-use Throwable;
 
 /**
  * @method Workflow create(array $attributes)
@@ -132,7 +131,7 @@ class Workflow extends Model
         $this->getState()->markJobAsFinished($job);
     }
 
-    public function markJobAsFailed(WorkflowableJob $job, Throwable $exception): void
+    public function markJobAsFailed(WorkflowableJob $job, \Throwable $exception): void
     {
         $this->getState()->markJobAsFailed($job, $exception);
     }
@@ -203,7 +202,7 @@ class Workflow extends Model
         $this->runCallback($this->then_callback, $this);
     }
 
-    public function runCatchCallback(WorkflowableJob $failedStep, Throwable $exception): void
+    public function runCatchCallback(WorkflowableJob $failedStep, \Throwable $exception): void
     {
         $this->runCallback($this->catch_callback, $this, $failedStep, $exception);
     }
