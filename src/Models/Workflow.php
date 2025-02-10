@@ -230,6 +230,11 @@ class Workflow extends Model
         ])->all();
     }
 
+    public function prunable()
+    {
+        return static::where('created_at', '<=', now()->subDays(config('venture.prune_days', 7)));
+    }
+
     protected function getState(): WorkflowState
     {
         if (null === $this->state) {
@@ -254,10 +259,5 @@ class Workflow extends Model
     private function serializer(): WorkflowJobSerializer
     {
         return Container::getInstance()->make(WorkflowJobSerializer::class);
-    }
-
-    public function prunable()
-    {
-        return static::where('created_at', '<=', now()->subDays(config('venture.prune_days', 7)));
     }
 }
