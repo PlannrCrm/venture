@@ -185,6 +185,7 @@ class Workflow extends Model
         return $this->jobs()
             ->whereNull('finished_at')
             ->whereNull('failed_at')
+            ->lockForUpdate()
             ->get();
     }
 
