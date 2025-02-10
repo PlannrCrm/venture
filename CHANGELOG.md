@@ -5,6 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.4.0](https://github.com/PlannrCrm/venture/compare/v5.3.0...v5.4.0) (2025-02-10)
+
+
+### Features
+
+* add release-please workflow ([6acd9c3](https://github.com/PlannrCrm/venture/commit/6acd9c3bd8aa83681edc7e95dec1d5907b426d31))
+* drop Laravel 9 support ([3ac30a9](https://github.com/PlannrCrm/venture/commit/3ac30a9bc0b418f08ab4820e79fb2b5338f1d69e))
+* pass job to ClosureWorkflowStep callback ([74a804b](https://github.com/PlannrCrm/venture/commit/74a804bed46021c3c82374501578c8e1c002c6b5))
+* plugin to provide compatibility with lorisleiva/laravel-actions ([628043c](https://github.com/PlannrCrm/venture/commit/628043c532aff6785a538c7c1a04ca5beb926e1d))
+* save dependantJobs as array of stepIds rather than job instances ([ec9a4a7](https://github.com/PlannrCrm/venture/commit/ec9a4a7c87ac24ffbaf6aff29da9e63894dbffe5))
+* support Laravel 11 ([2222f2d](https://github.com/PlannrCrm/venture/commit/2222f2d2ee46d9aa8ebf49f4c4d6c29149a4cde7))
+* support Laravel 11 ([410c0e1](https://github.com/PlannrCrm/venture/commit/410c0e1b5a3489750989e5fbf75b9188cce31384))
+
+
+### Bug Fixes
+
+* **migrations:** publish migrations fixed ([2c8fc9d](https://github.com/PlannrCrm/venture/commit/2c8fc9d2e9503a18b4942507b99bc84695efa376))
+* return the started workflow ([4ad0c34](https://github.com/PlannrCrm/venture/commit/4ad0c34ad1934f6b6b3da62281d153a6468c7e1d))
+* update jobId on jobs when nesting workflows ([714eb31](https://github.com/PlannrCrm/venture/commit/714eb31a50a97a6bb4ab6c234490a6a5869b7a88))
+* use findOrFail instead of firstOrFail ([42dcaea](https://github.com/PlannrCrm/venture/commit/42dcaeab9db6c8405c093ffaad9e5f63d9acf4a6))
+* use lockForUpdate to prevent concurrency bugs ([57afb3c](https://github.com/PlannrCrm/venture/commit/57afb3c5d97943aaca326004df12f166ca3ce065))
+* use whereIn ([5ee021f](https://github.com/PlannrCrm/venture/commit/5ee021f420716549fc1a64ecd4365bee9413bf95))
+
+
+### Miscellaneous Chores
+
+* **master:** release 5.2.0 ([73cdd0f](https://github.com/PlannrCrm/venture/commit/73cdd0f05b32f161104d30f4e61c103b16845074))
+* **master:** release 5.3.0 ([7d10e99](https://github.com/PlannrCrm/venture/commit/7d10e99f154342e2bfe174ac934b3d2981274f2e))
+* update README ([baccba8](https://github.com/PlannrCrm/venture/commit/baccba8b28d103bdd5d8eb18bb066c973cffa59c))
+
 ## [5.3.0](https://github.com/ksassnowski/venture/compare/v5.2.0...v5.3.0) (2024-03-25)
 
 
