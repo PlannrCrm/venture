@@ -2,13 +2,6 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
-use Sassnowski\Venture\Models\Workflow;
-
-use function Pest\Laravel\assertModelExists;
-use function Pest\Laravel\assertModelMissing;
-
 /**
  * Copyright (c) 2023 Kai Sassnowski
  *
@@ -18,9 +11,23 @@ use function Pest\Laravel\assertModelMissing;
  * @see https://github.com/ksassnowski/venture
  */
 
- uses(TestCase::class);
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use Sassnowski\Venture\Models\Workflow;
+use function Pest\Laravel\assertModelExists;
+use function Pest\Laravel\assertModelMissing;
 
- it('can prune Workflow models and WorkflowJob models are cascade deleted', function (): void {
+/**
+ * Copyright (c) 2023 Kai Sassnowski.
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ *
+ * @see https://github.com/ksassnowski/venture
+ */
+uses(TestCase::class);
+
+it('can prune Workflow models and WorkflowJob models are cascade deleted', function (): void {
     Carbon::setTestNow('2024-02-28 11:11:00');
     config()->set('venture.prune_days', 3);
 
@@ -65,4 +72,4 @@ use function Pest\Laravel\assertModelMissing;
 
     expect(DB::table(config('venture.workflow_table'))->count())->toEqual(1);
     expect(DB::table(config('venture.jobs_table'))->count())->toEqual(1);
- });
+});

@@ -13,12 +13,10 @@ declare(strict_types=1);
 
 namespace Sassnowski\Venture;
 
-use function event;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Queue\Events\JobFailed;
-use Sassnowski\Venture\WorkflowableJob;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Queue\Events\JobProcessing;
-use Illuminate\Contracts\Events\Dispatcher;
 use Sassnowski\Venture\Actions\HandlesFailedJobs;
 use Sassnowski\Venture\Actions\HandlesFinishedJobs;
 
@@ -99,7 +97,7 @@ class WorkflowEventSubscriber
     ): void {
         $jobName = $event->job->payload()['data']['commandName'] ?? null;
 
-        if ($jobName && class_exists($jobName) && !isset(class_implements($jobName)[WorkflowableJob::class])) {
+        if ($jobName && \class_exists($jobName) && !isset(\class_implements($jobName)[WorkflowableJob::class])) {
             return;
         }
 
