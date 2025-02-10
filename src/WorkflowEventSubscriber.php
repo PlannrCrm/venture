@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sassnowski\Venture;
 
-use Closure;
 use function event;
 use Illuminate\Queue\Events\JobFailed;
 use Sassnowski\Venture\WorkflowableJob;
@@ -63,7 +62,7 @@ class WorkflowEventSubscriber
         $this->withWorkflowJob($event, function (WorkflowableJob $jobInstance): void {
             ($this->handleFinishedJobs)($jobInstance);
 
-            event(new Events\JobFinished($jobInstance));
+            \event(new Events\JobFinished($jobInstance));
         });
     }
 
@@ -76,7 +75,7 @@ class WorkflowEventSubscriber
         $this->withWorkflowJob($event, function (WorkflowableJob $jobInstance) use ($event): void {
             ($this->handleFailedJobs)($jobInstance, $event->exception);
 
-            event(new Events\JobFailed($jobInstance, $event->exception));
+            \event(new Events\JobFailed($jobInstance, $event->exception));
         });
     }
 
@@ -86,17 +85,17 @@ class WorkflowEventSubscriber
             if ($jobInstance->workflow()?->isCancelled()) {
                 $event->job->delete();
             } else {
-                event(new Events\JobProcessing($jobInstance));
+                \event(new Events\JobProcessing($jobInstance));
             }
         });
     }
 
     /**
-     * @param Closure(WorkflowableJob): void $callback
+     * @param \Closure(WorkflowableJob): void $callback
      */
     private function withWorkflowJob(
-        JobProcessing|JobProcessed|JobFailed $event,
-        Closure $callback,
+        JobFailed|JobProcessed|JobProcessing $event,
+        \Closure $callback,
     ): void {
         $jobName = $event->job->payload()['data']['commandName'] ?? null;
 
