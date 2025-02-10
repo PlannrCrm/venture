@@ -59,6 +59,7 @@ final class QueueDispatcher implements JobDispatcher
         return \app(Venture::$workflowJobModel)
             ->newQuery()
             ->whereIn('uuid', $stepIDs)
+            ->lockForUpdate()
             ->with('workflow')
             ->get();
     }
